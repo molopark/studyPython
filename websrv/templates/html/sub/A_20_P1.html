@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>kt skylife 스마트청약 시스템 구축</title>
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--
+	<link rel="shortcut icon" href="../../images/favicon.ico">
+	<link rel="icon" type="image/png" href="../../images/favicon_192.png" sizes="192x192">
+	<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
+	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="../../js/common/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery-ui.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../js/common/jquery-ui.min.css" />
+	<script type="text/javascript" src="../../js/common/datepicker.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery.bpopup.min.js"></script>
+	<script type="text/javascript" src="../../js/common/swiper.jquery.min.js"></script>
+	<script type="text/javascript" src="../../js/common/ui.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/contant.css" />
+</head>
+
+<body>
+
+<!--
+	# [Confirm레이어] 간편로그인 해제 버튼 클릭
+	# [A_20_P1] 로그인 실패인 경우 안내 팝업
+	# [A_20_P1] 로그인 성공인 경우 안내 있는 경우 팝업
+	# [Confirm레이어] 비밀번호 변경 [취소] 버튼 클릭
+	# [Confirm레이어] 임시 비밀번호 신청 [취소] 버튼 클릭
+	# [Confirm레이어] 비밀번호 변경 [변경] 버튼 클릭
+	# [Confirm레이어] 임시 비밀번호 신청 [신청] 버튼 클릭
+	# [A_20_P2] 비밀번호 변경 처리 완료
+	# [A_20_P3] 임시 비밀번호 신청 처리 완료
+	# [A_20_P2] 비밀번호 변경 실패
+	# [A_20_P3] 임시 비밀번호 신청 실패
+
+	# [A_20_P4] 간편로그인 등록 안된 경우 - 로그아웃
+	# [A_20_P4] 간편로그인 등록된 경우 - 로그아웃
+
+	# [Confirm레이어] [취소하기] 버튼 클릭시 확인 메시지
+
+	# [A_60_P9] 신청 불가능한 상품인 경우
+
+	# [Confirm레이어] [삭제하기] 버튼 클릭시 확인 메시지
+
+	# [A_60_P20] 상품(이벤트) 정보 상세보기
+	# [A_60_P13] 본인 인증된 경우 - 인증 완료 안내
+	# [A_60_P13] 본인 인증된 경우 - 인증 실패 안내
+
+	# [A_60_P1] 설치 가능한 고객인 경우 -고객정보 확인 완료
+
+	# [A_60_P1] 설치 불가능한 고객인 경우 - 가입 불가 안내
+	# [A_60_P2] 설치 가능한 경우 - 설치 확인 완료
+	# [A_60_P2] 설치 불가능한 경우 - 설치 불가 안내
+	# [A_60_P13] 타인납부 인증된 경우 - 인증 완료 안내
+	# [A_60_P13] 타인납부 인증된 경우 - 인증 실패 안내
+	# [A_60_P3] 계좌 인증 성공한 경우 - 계좌 확인 완료
+	# [A_60_P3] 계좌 인증 성공한 경우  -계좌 이용 불가 안내
+	# [A_60_P4] 신용카드 인증 성공한 경우 - 신용카드 확인 완료
+	# [A_60_P4] 신용카드 인증 성공한 경우 - 신용카드 이용 불가 안내
+	# [Confirm레이어] [신청완료] 버튼 클릭시 확인 메시지 - 신청 안내
+
+	# A_60_P10 - 주요 확인 사항
+	# A_60_P14 - Sky 홈 렌탈 이용약관
+
+	# [A_60_P7] 이메일 발송 확인 메시지 - 이메일로 받기
+	# [A_60_P8] 이메일 발송 처리 완료 - 이메일 발송 완료
+	# [A_60_P8] 이메일 발송 처리 실패 - 이메일 발송 실패
+
+	A_60_P5 주소검색 - 도로명 찾기
+	A_60_P6 주소검색 - 지번 찾기
+	A_60_P11 인터넷 수용국
+
+	A_60_P15 개인정보 이용 동의 약관
+	A_60_P16 서비스 이용 약관
+	A_60_P17 고유식별정보 처리 동의 약관
+	A_60_P18 부가서비스 안내 관련 동의 약관
+	A_60_P19 통신사 이용 약관
+
+	A_40_P1 공지사항 안내
+
+	# [Confirm레이어] 가입신청취소(철회) 확인 메시지 - 가입신청취소(철회) 안내
+	# [Confirm레이어] 가입신청서 재등록 확인 메시지 - 가입신청서 재등록 안내
+	# [A_50_P1] 가입신청취소(철회) 처리 완료 - 가입신청취소(철회) 완료
+	# [A_50_P2] 가입신청서 재등록 처리 완료 - 가입신청서 재등록 완료
+	# [A_50_P1] 가입신청취소(철회) 처리 실패 - 가입신청취소(철회) 실패
+	# [A_50_P2] 가입신청서 재등록 처리 실패 - 가입신청서 재등록 실패
+
+
+	A_50_P3 - 가입신청서
+
+	# [Confirm레이어] [신청완료] 버튼 클릭시 확인 메시지 - 등록 안내
+
+	# [A_70_P1] 본인 인증된 경우 - 인증 완료 안내
+	# [A_70_P1] 본인 인증된 경우 - 인증 실패 안내
+
+	# [A_70_P2] 서명등록 성공한 경우 - 서명등록 완료
+	# [A_70_P2] 서명등록 실패한 경우 - 서명등록 실패
+-->
+
+<div class="wrap" style="padding:2rem ">
+	<h2 class="tit1">기본 팝업</h2>
+	<div class="btn-wp">
+		<button type="button" onclick="popup1();" class="btn1"><span>popup1</span></button>
+		<button type="button" onclick="popup2();" class="btn1"><span>Confirm1</span></button>
+		<button type="button" onclick="popup3();" class="btn1"><span>Confirm2</span></button>
+	</div>
+	<h2 class="tit1">인풋 팝업</h2>
+	<div class="btn-wp">
+		<button type="button" onclick="popup4();" class="btn1"><span>사은품</span></button>
+		<button type="button" onclick="popup9();" class="btn1"><span>이메일로 받기</span></button>
+	</div>
+	<h2 class="tit1">안내 팝업</h2>
+	<div class="btn-wp">
+		<button type="button" onclick="popup11();" class="btn1"><span>공지사항 안내</span></button>
+		<button type="button" onclick="popup12();" class="btn1"><span>상품(이벤트)안내</span></button>
+	</div>
+	<h2 class="tit1">주소,수용국 전체 팝업</h2>
+	<div class="btn-wp">
+		<button type="button" onclick="popup5();" class="btn1"><span>주소검색</span></button>
+		<button type="button" onclick="popup10();" class="btn1"><span>인터넷 수용국</span></button>
+	</div>
+	<h2 class="tit1">약관 전체 팝업</h2>
+	<div class="btn-wp">
+		<button type="button" onclick="popup6();" class="btn1"><span>Sky 홈 렌탈 이용약관</span></button>
+		<button type="button" onclick="popup7();" class="btn1 mt1"><span>주요 확인 사항</span></button>
+		<button type="button" onclick="popup13();" class="btn1 mt1"><span>개인정보 이용 동의 약관</span></button>
+		<button type="button" onclick="popup14();" class="btn1 mt1"><span>서비스 이용 약관</span></button>
+		<button type="button" onclick="popup15();" class="btn1 mt1"><span>고유식별정보 처리 동의 약관</span></button>
+		<button type="button" onclick="popup16();" class="btn1 mt1"><span>부가서비스 안내 관련 동의 약관</span></button>
+		<button type="button" onclick="popup17();" class="btn1 mt1"><span>통신사 이용 약관</span></button>
+		<button type="button" onclick="popup18();" class="btn1 mt1"><span>가입신청서</span></button>
+	</div>
+</div>
+
+
+<!--  팝업 --->
+<div id="popup1" class="pop-wp">
+	<div class="pop-ct">
+		<div class="confirm">
+			<strong class="pop-tit">로그아웃</strong>
+			<p class="txt">선택하신 상품은 신청이 불가능합니다.</p>
+			<p class="txt">불가 사유 : 불가사유 메시지 입니다.</p>
+			<div class="btn-wp">
+				<ul class="colum">
+					<li><button type="button" class="btn1 b-close"><span>취소</span></button></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="popup2" class="pop-wp">
+	<div class="pop-ct">
+		<div class="confirm">
+			<strong class="pop-tit">로그아웃</strong>
+			<p class="txt">로그인 실패 메시지</p>
+			<div class="btn-wp">
+				<ul class="colum">
+					<li><button type="button" class="btn1 b-close"><span>확인</span></button></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="popup3" class="pop-wp">
+	<div class="pop-ct">
+		<div class="confirm">
+			<p class="txt">비밀번호 변경을 취소하시겠습니까?</p>
+			<div class="btn-wp">
+				<ul class="colum">
+					<li><button type="button" class="btn1 b-close"><span>취소</span></button></li>
+					<li><button type="button" class="btn1"><span>확인</span></button></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="popup4" class="pop-wp">
+	<div class="pop-ct">
+		<header>
+			<h3 class="pop-tit">사은품</h3>
+			<button type="button" class="b-close"><span>닫기</span></button>
+		</header>
+		<section class="gifts-ct">
+			<ul class="colum2">
+				<li class="label">
+					<label class="tit2" for="giftsDiv">사은품 구분</label>
+				</li>
+				<li>
+					<select id="gifts" class="sel1">
+						<option>사은품 구분을 선택해 주세요.</option>
+					</select>
+				</li>
+			</ul>
+			<ul class="colum2">
+				<li class="label">
+					<label class="tit2" for="giftsType">사은품 유형</label>
+				</li>
+				<li>
+					<select id="gifts" class="sel1">
+						<option>사은품 유형을 선택해 주세요.</option>
+					</select>
+				</li>
+			</ul>
+			<ul class="colum2">
+				<li class="label">
+					<label class="tit2" for="giftsPrd">제조사</label>
+				</li>
+				<li>
+					<select id="gifts" class="sel1">
+						<option>제조사를 선택해 주세요.</option>
+					</select>
+				</li>
+			</ul>
+			<ul class="colum2">
+				<li class="label">
+					<label class="tit2" for="giftsName">사은품명</label>
+				</li>
+				<li>
+					<select id="gifts" class="sel1">
+						<option>사은품명을 선택해 주세요.</option>
+					</select>
+				</li>
+			</ul>
+			<p class="nodata">해당 이벤트에 사은품이 없습니다.</p>
+		</section>
+		<div class="btn-wp">
+			<ul class="colum">
+				<li><button type="button" class="btn1 b-close"><span>취소</span></button></li>
+				<li><button type="button" class="btn1"><span>확인</span></button></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="popup11" class="pop-wp">
+	<div class="pop-ct">
+		<header class="pop-header">
+			<h3 class="pop-tit">공지사항 안내</h3>
+			<button type="button" class="b-close"><span class="hide">닫기</span></button>
+		</header>
+		<section class="pop-noti">
+			<h4 class="tit">신규채널 론칭 안내</h4>
+			<div class="txt">
+				<div>
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+
+					</div>
+				</div>
+				<div class="btn-wp">
+					<ul class="colum">
+						<li><button type="button" class="btn1 b-close"><span>확인</span></button></li>
+					</ul>
+				</div>
+
+		</section>
+
+	</div>
+</div>
+
+<div id="popup12" class="pop-wp">
+	<div class="pop-ct">
+		<header class="pop-header">
+			<h3 class="pop-tit">상품(이벤트) 안내</h3>
+			<button type="button" class="b-close"><span class="hide">닫기</span></button>
+		</header>
+		<section class="pop-noti">
+			<h4 class="tit">MBC 그룹 월정액 가입하고 스타일러 받자!</h4>
+			<div class="txt">
+				<div>
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+					본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+
+					</div>
+				</div>
+				<div class="btn-wp">
+					<ul class="colum">
+						<li><button type="button" class="btn1 b-close"><span>확인</span></button></li>
+					</ul>
+				</div>
+
+		</section>
+
+	</div>
+</div>
+
+<div id="popup5" class="pop-wp pop-full">
+	<div class="pop-ct">
+		<header class="pop-header">
+			<h3 class="pop-tit">주소검색</h3>
+			<button type="button" class="b-close"><span class="hide">닫기</span></button>
+		</header>
+		<div class="addr-wp">
+			<ul class="colum2 tabs">
+				<li rel="addrLoad" class="active">도로명 찾기</li>
+				<li rel="addrNum">지번 찾기</li>
+			</ul>
+			<div class="tabCt">
+				<div id="addrLoad" class="tabUnit" style="display:block;">
+					<label for="tvPrd" class="tit2">찾으실 곳의 지역 및 도로명을 입력해 주세요.</label>
+					<select id="tvPrd" class="sel1">
+						<option>시/도 선택</option>
+					</select>
+					<ul class="colum2">
+						<li><input type="text" name="" class="inp1" placeholder="시/군/구 입력"> </li>
+						<li><input type="text" name="" class="inp1" placeholder="도로명 입력  예) 매봉산로"> </li>
+					</ul>
+					<div class="btn-wp">
+						<button type="button" class="btn1"><span>검색</span></button>
+					</div>
+					<div class="pop-addr-wp">
+						<h4 class="tit2">주소를 선택해 주세요.</h4>
+						<div class="pop-scroll" style="top:24rem">
+							<p class="nodata">검색된 주소가 없습니다.</p>
+							<ul class="pop-adrlst">
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000</span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="addr">서울 강남구 역삼로 10000000 </span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="addrNum" class="tabUnit">
+					<label for="addrNum" class="tit2">조회할 주소의 읍/면/동 및 상세 주소를 입력해 주세요.</label>
+					<input type="text" name="" id="addrNum" class="inp1" placeholder="예) 서울시 마포구 상암동 23-5번지 DDMC빌딩">
+					<div class="btn-wp">
+						<button type="button" class="btn1"><span>검색</span></button>
+					</div>
+					<div class="pop-addr-wp">
+						<h4 class="tit2">주소를 선택해 주세요.</h4>
+						<div class="pop-scroll" style="top:21rem">
+							<p class="nodata">검색된 주소가 없습니다.</p>
+							<ul class="pop-adrlst">
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000</span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000</span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000</span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+								<li><span class="zipcode">00000</span><span class="address">서울 강남구 역삼로 10000000 </span></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="popup6" class="pop-wp pop-full">
+	<div class="pop-ct">
+		<header>
+			<h3 class="pop-tit">Sky 홈 렌탈 이용약관</h3>
+			<button type="button" class="b-close"><span>닫기</span></button>
+		</header>
+		<div class="pop-scroll">
+			<textarea class="pop-terms">
+	본 약관은 할부 이용계약 물건(이하 ‘물건’이라 함)을 제공하는 주식회사 케이티스카이라이프(이하 ‘회사’라 함)와 가전결합 할부구매를 신청을 한 본인(이하 ‘고객’이라 함) 사이에 체결된 렌탈 이용계약상의 권리, 의무에 관한 사항을 규정함을 목적으로 합니다.
+		</textarea>
+		</div>
+	</div>
+</div>
+
+<div id="popup18" class="pop-wp pop-full">
+	<div class="pop-ct">
+		<header>
+			<h3 class="pop-tit">가입신청서</h3>
+			<button type="button" class="b-close"><span>닫기</span></button>
+		</header>
+		<div class="pop-scroll pop-img">
+			<img src="../../image/img.png" alt="가입신청서" >
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+
+
+function popup1(){
+	$("#popup1").bPopup({
+		//easing: 'easeOutBack',
+		//speed: 450,
+		//transition: 'slideDown',
+		modalClose: false,
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+function popup2(){
+	$("#popup2").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+
+function popup3(){
+	$("#popup3").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+
+function popup4(){
+	$("#popup4").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+
+function popup5(){
+	$("#popup5").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+function popup6(){
+	$("#popup6").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+function popup18(){
+	$("#popup18").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+function popup11(){
+	$("#popup11").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+function popup12(){
+	$("#popup12").bPopup({
+		onOpen: function(){ $('body').addClass('bodyHold'); },
+		onClose: function(){ $('body').removeClass('bodyHold'); }
+	});
+}
+</script>
+
+</body>
+</html>

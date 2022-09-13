@@ -1,0 +1,11 @@
+<table border="1">
+    {% for item in list %}
+    <tr>
+        <td><img src="{{item.medium_cover_image}}"></td>
+        <td>{{item.title}}</td>
+        <td>{{item.rating}}</td>
+        <td>{{item.synopsis}}</td>
+    </tr>
+    {% endfor %}
+</table>
+        

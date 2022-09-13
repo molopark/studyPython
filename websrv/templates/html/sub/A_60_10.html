@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="utf-8">
+	<title>kt skylife 스마트청약 시스템 구축</title>
+	<meta name="author" content="" />
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<!--
+	<link rel="shortcut icon" href="../../images/favicon.ico">
+	<link rel="icon" type="image/png" href="../../images/favicon_192.png" sizes="192x192">
+	<link rel="shortcut icon" href="data:image/x-icon" type="image/x-icon">
+	-->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+	<script type="text/javascript" src="../../js/common/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="../../js/common/datepicker.js"></script>
+	<script type="text/javascript" src="../../js/common/selectordie.min.js"></script>
+	<script type="text/javascript" src="../../js/common/jquery.bpopup.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="../../css/jquery-ui.min.css" />
+
+	<script type="text/javascript" src="../../js/common/ui.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../../css/selectordie.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/select.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/common.css" />
+	<link rel="stylesheet" type="text/css" href="../../css/contant.css" />
+</head>
+<body>
+<div class="skipNavi">
+	<a href="#ct">본문 바로가기</a>
+</div>
+<div class="wrap">
+	<header class="header">
+		<div class="tit">
+			<a href="javascript:history.back()" class="back"><span class="hide">뒤로가기</span></a>
+			<h1>가입신청서</h1>
+		</div>
+		<ul class="step">
+			<li class="on"><a href="A_60_10.html">상품정보</a></li>
+			<li><a href="A_60_11.html">고객정보</a></li>
+			<li><a href="A_60_15.html">계약확인</a></li>
+		</ul>
+	</header>
+	<section id="ct" class="cont">
+		<aticle class="collaps open"><!-- 작성완료 클래스 completed 추가--->
+			<h2 class="clpsTit">TV<span>[작성완료]</span></h2>
+			<div class="clpsCt">
+				<div class="prd-con">
+					<h3 class="tit1">기본상품</h3>
+					<div class="base-prd bor">
+						<div class="inp-wp">
+							<label class="tit2" for="tvPrd">상품유형</label>
+							<div class="priviwe">
+								<select id="tvPrd" class="basic sel1">
+									<option>선택해주세요</option>
+									<option>3년</option>
+								</select>
+							</div>
+						</div>
+						<div class="inp-wp">
+						<label class="tit2" for="tvType">상품종류<span class="rq">(필수)</span></label>
+							<select id="tvType" class="sel1">
+								<option>선택해주세요</option>
+								<option>sky A 12.1</option>
+							</select>
+						</div>
+						<div class="inp-wp">
+							<label class="tit2" for="tvPeriod">약정기간<span class="rq">(필수)</span></label>
+							<select id="tvPeriod" class="sel1">
+								<option>선택해주세요</option>
+								<option>3년</option>
+							</select>
+							<input type="text"  id="tvPrds" class="inp1" title="상품명검색" placeholder="상품명을 입력해 주세요." >
+							<button type="button" class="btn1 mt2"><span class="icn1">조회</span></button>
+						</div>
+					</div>
+
+					<div class="inp-wp">
+						<label class="tit2" for="tvEvent">상품명(이벤트명)<span class="rq">(필수)</span></label>
+						<select id="tvPeriod" class="sel1">
+							<option>선택해주세요</option>
+							<option>상품명</option>
+						</select>
+						<button type="button" class="btn1 mt2"><span>상품(이벤트) 정보 상세보기</span></button>
+					</div>
+					<div class="est-pay">
+						<ul class="colum">
+							<li class="tit"><strong>월 예상납부액</strong><span>(부가세포함)</span></li>
+							<li class="pay">월 <em>28,600</em> 원</li>
+						</ul>
+						<p class="total">(시청료 18,600원 + 장비 임대료 10,000원)</p>
+					</div>
+					<div class="est-pay">
+						<ul class="colum">
+							<li class="tit"><strong>월 예상납부액</strong><span>(부가세포함)</span></li>
+							<li class="pay">월 <em>28,600</em> 원</li>
+						</ul>
+						<p class="total">(시청료 18,600원 + 장비 임대료 10,000원)</p>
+					</div>
+					<p class="infotxt">* 위 요금은 결합 할인 및 요금 감면이 적용되지 않은 예상 금액 입니다.</p>
+					<div class="btn-wp">
+						<button type="button" class="btn1 red"><span>삭제하기</span></button>
+					</div>
+				</div>
+				<div class="comb-prd">
+					<strong class="tit2">TV+인터넷 결합으로 요금을 할인 받으세요.</strong>
+					<button type="button" class="btn1"><span>+ 고객정보 입력하기</span></button>
+				</div>
+				<div class="comb-prd">
+					<strong class="tit2">홈 렌탈 상품을 같이 신청해 보세요.</strong>
+					<button type="button" class="btn1"><span>+ 홈 렌탈 신규 추가하기</span></button>
+				</div>
+
+					<p class="infotxt">위 요금은 요금 감면 및 기타 할인 적용되지 않은 예상 금액 입니다.</p>
+					<div class="checkBox">
+						<div class="checkTit">
+							<span class="chk1">
+								<input type="checkbox" name="" id="check1" ><label for="check1" >일시불</label>
+							</span>
+						</div>
+						<div class="checkCt">
+							<span class="chk1">
+								<input type="checkbox" name="check1" id="check11" ><label for="check11"><span>일시불</span></label>
+							</span>
+							<span class="chk1">
+								<input type="checkbox" name="check1" id="check12"><label for="check12">36개월 할부</label>
+							</span>
+						</div>
+					</div>
+					<div class="calender">
+						<input type="text" class="datepicker" placeholder="날짜를 선택하세요." readonly="true" />
+					</div>
+
+					<div class="btn-wp">
+						<ul class="colum">
+							<li><button type="button" class="btn1 red"><span>삭제</span></button></li>
+							<li><button type="button" class="btn1"><span>고객정보 입력하기</span></button></li>
+						</ul>
+					</div>
+					<div class="tabs-wp">
+						<ul class="colum3 tabs">
+							<li rel="tab1" class="active">탭메뉴</li>
+							<li rel="tab2">탭메뉴</li>
+							<li rel="tab3">탭메뉴</li>
+						</ul>
+						<div class="tabCt">
+							<div id="tab1" class="tabUnit" style="display:block;">
+								탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭	내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1탭 내용1
+							</div>
+							<div id="tab2" class="tabUnit">
+								탭 내용2
+								<div class="tabs-wp">
+									<ul class="colum2 tabs">
+										<li rel="tab4" class="active">탭메뉴탭메뉴탭메뉴탭메뉴탭메뉴</li>
+										<li rel="tab5">탭메뉴</li>
+									</ul>
+									<div class="tab-ct">
+										<div id="tab4" class="tab-unit" style="display:block;">탭 내용4</div>
+										<div id="tab5" class="tab-unit">탭 내용5</div>
+									</div>
+								</div>
+							</div>
+							<div id="tab3" class="tab-unit">
+								탭 내용3내용3내용3내용3내용3내용3내용3내용3내용3내용3
+							</div>
+						</div>
+					</div>
+					<div class="btn-wp">
+						<button type="button" class="btn1 next">삭제</button>
+					</div>
+
+			</div>
+		</aticle>
+
+		<aticle class="collaps">
+			<h2 class="clpsTit">인터넷</h2>
+			<div class="clpsCt">
+				인터넷
+			</div>
+		</aticle>
+		<aticle class="collaps">
+			<h2 class="clpsTit">홈 렌탈(TV)</h2>
+			<div class="clpsCt">
+				홈 렌탈(TV)
+			</div>
+		</aticle>
+		<aticle class="collaps">
+			<h2 class="clpsTit">홈 렌탈(건조기)</h2>
+			<div class="clpsCt">
+				홈 렌탈(TV) 동일
+			</div>
+		</aticle>
+		<div class="btn-wp">
+			<button type="button" class="btn1" onclick="popup1();">다음</button>
+		</div>
+	</section>
+</div>
+<div id="popup1" class="pop-wp">
+	<div class="pop-ct">
+		<strong class="tit">로그아웃</strong>
+		<p class="txt">로그인 실패 메시지</p>
+		<!--
+		<p class="txt">비밀번호 변경이 완료 되었습니다.<br>다시 로그인 해주세요.</p>
+		<p class="txt">임시 비밀번호 신청이 완료 되었습니다.<br>다시 로그인 해주세요.</p>
+		<p class="txt">비밀번호 변경이 실패하였습니다.<br>다시 변경 해주세요.</p>
+		<p class="txt">임시 비밀번호 신청이 실패하였습니다.<br>다시 변경 해주세요.</p>
+		-->
+		<div class="btn-wp">
+			<button type="button" class="btn1 b-close">확인</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+function popup1(){
+	$("#popup1").bPopup({
+		onOpen: function(){ $('body').addClass('popOpen'); },
+		onClose: function(){ $('body').removeClass('popOpen'); }
+	});
+}
+$(function(){
+	$("select").selectOrDie();
+});
+</script>
+
+</body>
+</html>
