@@ -18,20 +18,20 @@ def movielist(page):
 @app.route("/test")
 def test():
     page = '''
-    Welcome <a href='index'>index</a> page!!!<br>
+    Welcome <a href='index_test'>index</a> page!!!<br>
     go <a href='movie/1'>movie</a> page
     '''
     return page
     
+@app.route('/index_test')
+def index_test():
+    return render_template('index_test.html')
+
 @app.route("/movie/<page>")
 def movie(page):
     print(page)
     list = getMovie(page)
     return render_template('movie.html', list=list)
-
-@app.route('/index_test')
-def index_test():
-    return render_template('index_test.html')
 
 @app.route('/ktm/<sub1>')
 def submain(sub1):
