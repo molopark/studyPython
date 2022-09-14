@@ -6,6 +6,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    return render_template('index.html')
+
+@app.route("/movielist/<page>")
+def movielist(page):
+    list = getMovie(page)
+    return render_template('movie/movielist.html', list=list)
+
+
+
+@app.route("/test")
+def test():
     page = '''
     Welcome <a href='index'>index</a> page!!!<br>
     go <a href='movie/1'>movie</a> page
@@ -18,23 +29,23 @@ def movie(page):
     list = getMovie(page)
     return render_template('movie.html', list=list)
 
-@app.route('/index')
-def main():
-    return render_template('index.html')
+@app.route('/index_test')
+def index_test():
+    return render_template('index_test.html')
 
-@app.route('/html/<sub1>')
+@app.route('/ktm/<sub1>')
 def submain(sub1):
     print("### "+sub1)
-    return render_template('html/'+sub1)
+    return render_template('ktm/'+sub1)
 
-@app.route('/html/<sub1>/<sub2>')
+@app.route('/ktm/<sub1>/<sub2>')
 def submain1(sub1,sub2):
     print("### "+sub1+" ## "+sub2)
-    return render_template('html/'+sub1+'/'+sub2)
+    return render_template('ktm/'+sub1+'/'+sub2)
 
-@app.route('/html/<sub1>/<sub2>/<sub3>')
+@app.route('/ktm/<sub1>/<sub2>/<sub3>')
 def submain2(sub1,sub2,sub3):
-    return render_template('html/'+sub1+'/'+sub2+'/'+sub3)
+    return render_template('ktm/'+sub1+'/'+sub2+'/'+sub3)
 
 @app.get("/jsonHello")
 def jsonHello():

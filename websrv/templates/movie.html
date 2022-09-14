@@ -1,11 +1,42 @@
-<table border="1">
-    {% for item in list %}
-    <tr>
-        <td><img src="{{item.medium_cover_image}}"></td>
-        <td>{{item.title}}</td>
-        <td>{{item.rating}}</td>
-        <td>{{item.synopsis}}</td>
-    </tr>
-    {% endfor %}
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+    <script src="/static/js/common/jquery-3.3.1.min.js"></script>
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+    <title>Movie List</title>
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>포스터</th>
+                <th>영화제목</th>
+                <th width="50px">평점</th>
+                <th>설명</th>
+            </tr>
+        </thead>
+        {% for item in list %}
+        <tr>
+            <td><img src="{{item.medium_cover_image}}"></td>
+            <td>{{item.title}}</td>
+            <td>{{item.rating}}</td>
+            <td>{{item.synopsis}}</td>
+        </tr>
+        {% endfor %}
+    </table>    
+</body>
+</html>
+
         

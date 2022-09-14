@@ -3,7 +3,8 @@ import json
 from Movie import Movie
 
 def getMovie(page):
-    url = "https://yts.am/api/v2/list_movies.json?sort_by=ratings&limit=20&page=1"
+    url = "https://yts.am/api/v2/list_movies.json?sort_by=ratings&limit=10&page="+page
+    # print(url)
 
     response = requests.get(url=url)
 
