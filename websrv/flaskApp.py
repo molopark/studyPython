@@ -6,17 +6,17 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Welcome index page!!!"
+    page = '''
+    Welcome <a href='index'>index</a> page!!!<br>
+    go <a href='movie/1'>movie</a> page
+    '''
+    return page
     
 @app.route("/movie/<page>")
 def movie(page):
     print(page)
     list = getMovie(page)
     return render_template('movie.html', list=list)
-
-@app.route('/hello')
-def hello_world():
-    return 'Hello World!'
 
 @app.route('/index')
 def main():

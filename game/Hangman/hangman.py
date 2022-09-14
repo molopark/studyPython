@@ -6,7 +6,7 @@ import pygame
 import random
 import os
 
-os.chdir("python/Hangman")
+os.chdir("game/Hangman")
 path = os.getcwd()
 print(path)
 
