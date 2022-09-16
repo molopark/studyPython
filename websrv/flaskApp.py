@@ -11,8 +11,11 @@ def index():
 @app.route("/movielist/<page>")
 def movielist(page):
     list = getMovie(page)
-    return render_template('movie/movielist.html', list=list)
+    return render_template('htmlpage/movielist.html', list=list)
 
+@app.route("/mogle")
+def mogle():
+    return render_template('htmlpage/mogle.html')
 
 
 @app.route("/test")
@@ -31,7 +34,7 @@ def index_test():
 def movie(page):
     print(page)
     list = getMovie(page)
-    return render_template('movie.html', list=list)
+    return render_template('ktm/movie.html', list=list)
 
 @app.route('/ktm/<sub1>')
 def submain(sub1):
@@ -53,4 +56,3 @@ def jsonHello():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=9000, debug=True)
-    
