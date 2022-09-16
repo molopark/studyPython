@@ -1,0 +1,15 @@
+#searchCSS {
+    margin-top: 180px;
+    text-align: center;
+}
+#searchCSS .title {
+    font-size: 80px;
+    margin-bottom: 10px;
+}
+#searchCSS input.inputTxt {
+    height: 25px;
+    width: 230px;
+}
+#searchCSS input.inputSub {
+    height: 28px;
+}
