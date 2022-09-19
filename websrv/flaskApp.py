@@ -13,9 +13,13 @@ def movielist(page):
     list = getMovie(page)
     return render_template('htmlpage/movielist.html', list=list)
 
+
+
 @app.route("/mogle")
 def mogle():
     return render_template('htmlpage/mogle.html')
+
+
 
 
 @app.route("/test")
