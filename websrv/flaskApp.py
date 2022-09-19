@@ -21,7 +21,6 @@ def mogle():
 
 
 
-
 @app.route("/test")
 def test():
     page = '''
